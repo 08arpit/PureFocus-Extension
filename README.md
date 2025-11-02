@@ -128,7 +128,7 @@ PureFocus is committed to user privacy:
 ## 📞 Contact
 
 - GitHub: [@08arpit](https://github.com/08arpit)
-- Email: [your-email@example.com]
+- Email: [8arpitgarg@gmail.com]
 
 ---
 
