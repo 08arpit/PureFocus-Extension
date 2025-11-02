@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PureFocus</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo-container">
+        <img src="img/logo-48.png" alt="PureFocus Logo" class="logo">
+        <h1>PureFocus</h1>
+      </div>
+      <p class="tagline">Stay focused, learn better</p>
+    </header>
+
+    <div class="focus-mode-section">
+      <div class="toggle-container">
+        <label class="toggle-label">Focus Mode</label>
+        <label class="switch">
+          <input type="checkbox" id="focusToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="status-text" id="statusText">Off</p>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-label">Today's Focus</div>
+        <div class="stat-value" id="todayTime">0m</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value" id="weekTime">0m</div>
+      </div>
+    </div>
+
+    <div class="blocked-sites-section">
+      <div class="section-header">
+        <h2>Blocked Sites</h2>
+        <button class="icon-button" id="editSitesBtn" title="Edit blocked sites">✏️</button>
+      </div>
+      <div class="site-list" id="siteList"></div>
+      <div class="edit-panel" id="editPanel" style="display: none;">
+        <input type="text" id="newSiteInput" placeholder="Enter site URL (e.g., twitter.com)">
+        <button id="addSiteBtn">Add Site</button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <button class="settings-btn" id="settingsBtn">⚙️ Settings</button>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal" id="settingsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="close-btn" id="closeSettings">✕</button>
+      </div>
+      
+      <div class="settings-group">
+        <h3>Focus Timer</h3>
+        <div class="setting-item">
+          <label for="autoFocusTime">Auto-enable focus mode</label>
+          <select id="autoFocusTime">
+            <option value="">Disabled</option>
+            <option value="morning">During work hours (9AM-5PM)</option>
+            <option value="custom">Custom schedule</option>
+          </select>
+        </div>
+        <div class="setting-item" id="customScheduleSettings" style="display: none;">
+          <label>Custom Schedule</label>
+          <div class="time-inputs">
+            <input type="time" id="scheduleStart" value="09:00">
+            <span>to</span>
+            <input type="time" id="scheduleEnd" value="17:00">
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>Notifications</h3>
+        <div class="setting-item">
+          <label for="notifyDistraction">Distraction alerts</label>
+          <div class="toggle-wrapper">
+            <label class="switch">
+              <input type="checkbox" id="notifyDistraction">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="setting-item">
+          <label for="dailyReport">Daily focus report</label>
+          <div class="toggle-wrapper">
+            <label class="switch">
+              <input type="checkbox" id="dailyReport">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>YouTube Filtering</h3>
+        <div class="setting-item">
+          <label for="strictMode">Strict mode</label>
+          <div class="toggle-wrapper">
+            <label class="switch">
+              <input type="checkbox" id="strictMode">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <small>Block all non-educational content</small>
+        </div>
+        <div class="setting-item">
+          <label for="allowedCategories">Allowed categories</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="allowedCategory" value="education"> Education</label>
+            <label><input type="checkbox" name="allowedCategory" value="science"> Science & Technology</label>
+            <label><input type="checkbox" name="allowedCategory" value="documentary"> Documentary</label>
+            <label><input type="checkbox" name="allowedCategory" value="howto"> How-to & DIY</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>Data & Privacy</h3>
+        <div class="setting-item">
+          <label for="collectAnalytics">Collect usage analytics</label>
+          <div class="toggle-wrapper">
+            <label class="switch">
+              <input type="checkbox" id="collectAnalytics">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <small>Help improve PureFocus by sharing anonymous usage data</small>
+        </div>
+        <button class="secondary-btn" id="exportData">Export Data</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

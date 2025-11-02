@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "PureFocus",
+  "version": "1.0.0",
+  "description": "Stay focused on educational content with smart YouTube filtering and website blocking. AI-powered learning vs distraction detection.",
+  "author": "PureFocus Team",
+  "homepage_url": "https://github.com/yourusername/purefocus",
+  "icons": {
+    "16": "img/logo-16.png",
+    "48": "img/logo-48.png",
+    "128": "img/logo-128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "webRequest",
+    "scripting",
+    "alarms",
+    "notifications"
+  ],
+  "optional_permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtube.com/*",
+    "https://www.instagram.com/*",
+    "https://instagram.com/*",
+    "https://www.reddit.com/*",
+    "https://reddit.com/*",
+    "https://www.netflix.com/*",
+    "https://netflix.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*", "https://youtube.com/*"],
+      "js": ["ai-classifier.js", "youtube-content.js"],
+      "css": ["youtube-content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
+

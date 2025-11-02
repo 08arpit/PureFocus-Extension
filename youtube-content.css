@@ -1,0 +1,140 @@
+/* YouTube Content Script Styles */
+
+/* Hide elements when Focus Mode is active */
+.purefocus-active #secondary,
+.purefocus-active #secondary-inner,
+.purefocus-active #related,
+.purefocus-active ytd-watch-next-secondary-results-renderer,
+.purefocus-active ytd-watch-flexy[video-id] #secondary,
+.purefocus-active ytd-watch-flexy[video-id] #related {
+  display: none !important;
+}
+
+/* Hide comments when Focus Mode is active */
+.purefocus-active #comments,
+.purefocus-active ytd-comments,
+.purefocus-active ytd-comments-header-renderer {
+  display: none !important;
+}
+
+/* Dim video controls when non-educational video is detected */
+body:has(.focusflow-warning) .ytp-chrome-bottom {
+  opacity: 0.3 !important;
+  pointer-events: none !important;
+}
+
+/* Prevent video from being too prominent when blocked */
+body:has(.focusflow-warning) video {
+  filter: brightness(0.7) !important;
+}
+
+.focusflow-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.focusflow-warning-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 420px;
+  width: 92%;
+  box-shadow: none;
+  border: 1px solid #e6e6e6;
+  animation: slideUp 0.22s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.focusflow-warning-icon {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.focusflow-warning-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.focusflow-warning-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.focusflow-warning-message {
+  font-size: 14px;
+  color: #000;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.focusflow-warning-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.focusflow-btn {
+  padding: 12px 24px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.focusflow-btn-primary {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.focusflow-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.focusflow-btn-secondary {
+  background: transparent;
+  color: #000;
+  border: 1px solid #dcdcdc;
+}
+
+.focusflow-btn-secondary:hover {
+  background: #000;
+  color: #fff;
+}
+
